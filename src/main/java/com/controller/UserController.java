@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bean.User;
@@ -30,15 +31,18 @@ public class UserController {
 			return "User with "+user.getEmail()+" already exists";
 	}
 	
-	//SignIn
-	@PutMapping(value = "signIn", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public String signIn(@RequestBody String email,@RequestBody String password) {
-		User user = userService.signIn(email, password);
-		if(user != null)
-			return "Welcome "+user.getName();
-		else 
-			return "Invalid email or password. Please try again!";
-	}
+	//SignIn *** need correction ****
+//	@PutMapping(value = "signIn", consumes = MediaType.APPLICATION_JSON_VALUE)
+//	public String signIn(@RequestParam User user) {
+//		User isUser = new User();
+//		isUser.setEmail(user.getEmail());
+//		isUser.setPassword(user.getPassword());
+//		isUser=	userService.signIn(isUser);
+//		if(isUser != null)
+//			return "Welcome "+isUser.getName();
+//		else 
+//			return "Invalid email or password. Please try again!";
+//	}
 	
 	//Get all users for admin
 	@GetMapping(value = "allUsers", produces = MediaType.APPLICATION_JSON_VALUE)

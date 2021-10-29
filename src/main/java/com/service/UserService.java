@@ -1,8 +1,6 @@
 package com.service;
 
 import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,8 +21,11 @@ public class UserService {
 		
 	}
 	
-	public User signIn(String email, String password) {
-		return userRepository.signIn(email,password);
+	public User signIn(User user) {
+		User isUser = userRepository.signIn(user.getEmail(),user.getPassword());
+		if(isUser == null)
+			return null;
+		return isUser;
 	}
 	
 	public List<User> getAllUsers(){

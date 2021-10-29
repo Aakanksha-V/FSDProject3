@@ -3,3 +3,36 @@ CREATE TABLE `shoe`.`user` (
   `userName` VARCHAR(45) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`email`));
+
+create table admin(email varchar(45), pass varchar(45));
+insert into admin vlaues("Admin","admin");
+
+CREATE TABLE `shoe`.`product` (
+  `productid` INT NOT NULL,
+  `productname` VARCHAR(45) NULL,
+  `catogery` INT NULL,
+  `price` INT NULL,
+  `company` VARCHAR(45) NULL,
+  PRIMARY KEY (`productid`));
+
+create table category(id int primary key, cname varchar(50));
+insert into category values(1,"Runnung");
+insert into category values(2,"Gym & Traning");
+insert into category values(3,"Swim");
+insert into category values(4,"Football");
+insert into category values(5,"Basketball");
+insert into category values(6,"Tennis");
+
+ALTER TABLE `shoe`.`product` 
+ADD INDEX `CategoryId_idx` (`catogery` ASC) VISIBLE;
+;
+ALTER TABLE `shoe`.`product` 
+ADD CONSTRAINT `CategoryId`
+  FOREIGN KEY (`catogery`)
+  REFERENCES `shoe`.`category` (`id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+insert into shoe.product values(1,"QT Racer Sport Shoes", 1, 4619, "Adidas");
+insert into shoe.product values(2,"Lite Racer 2.0 Shoes", 2, 4599, "Adidas");
+insert into shoe.product values(4,"Racer TR21 Shoes", 3, 4699, "Adidas");
+insert into shoe.product values(5,"Ultraboost 21 Shoes", 4, 17999, "Adidas");
