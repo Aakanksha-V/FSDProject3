@@ -1,16 +1,24 @@
 package com.bean;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "product")
 public class Product {
 
 	@Id
+	@Column(name = "productid")
 	private int productId;
+	@Column(name = "productname")
 	private String productName;
+	@Column(name = "catogery")
 	private String catogery;
+	@Column(name = "price")
 	private int price;
+	@Column(name = "company")
 	private String company;
 	
 	public int getProductId() {

@@ -1,3 +1,5 @@
+create database shoe;
+
 CREATE TABLE `shoe`.`user` (
   `email` VARCHAR(45) NOT NULL,
   `userName` VARCHAR(45) NOT NULL,

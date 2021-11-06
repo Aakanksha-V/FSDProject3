@@ -1,14 +1,20 @@
 package com.bean;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "admin")
 public class Admin {
 
 	@Id
+	@Column(name = "email")
 	private String email;
+	@Column(name = "pass")
 	private String pass;
+	
 	public String getEmail() {
 		return email;
 	}
