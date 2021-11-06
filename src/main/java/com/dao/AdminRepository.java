@@ -12,4 +12,7 @@ public interface AdminRepository extends JpaRepository<Admin, Object>{
 	@Modifying
 	@Query("update Admin as a set a.pass = :password where a.email = :email")
 	int changePasswrd(@Param("email") String  email, @Param("password") String password);
+	
+	@Query(value = "select * from admin where email = :Email", nativeQuery = true)
+	Admin findAdmin(@Param("Email") String Email);
 }

@@ -2,6 +2,7 @@ package com.service;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.session.NonUniqueSessionRepositoryException;
 import org.springframework.stereotype.Service;
 
 import com.bean.User;
@@ -31,5 +32,12 @@ public class UserService {
 	public List<User> getAllUsers(){
 		List<User> allUsers = userRepository.findAll();
 		return allUsers;
+	}
+	
+	public List<User> searchUserByName(String name){
+		List<User> searchUsers = userRepository.searchUser(name);
+		if(searchUsers.size() > 0)
+			return searchUsers;
+		return null;
 	}
 }

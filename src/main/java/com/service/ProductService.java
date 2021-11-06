@@ -1,5 +1,8 @@
 package com.service;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,5 +20,34 @@ public class ProductService {
 		if(p.getProductName().isBlank())
 			return false;
 		return true;
+	}
+	
+	public Product getProductById(Integer id) {
+		Optional<Product> products = productRepository.findById(id);
+		if(products.isEmpty())
+			return null;
+		return products.get();
+	}
+	
+	public void deleteById(Integer id) {
+		productRepository.deleteById(id);
+	}
+	
+	public boolean updateProduct(Integer id, Product product) {
+		Optional<Product> getProducts = productRepository.findById(id);
+		if(getProducts.isPresent()) {
+			Product p = getProducts.get();
+			p.setCatogery(product.getCatogery());
+			p.setCompany(product.getCompany());
+			p.setProductName(product.getProductName());
+			p.setPrice(product.getPrice());
+			return true;
+		}
+		return false;
+	}
+	
+	public List<Product> getAllProducts(){
+		List<Product> allProducts = productRepository.findAll();
+		return allProducts;
 	}
 }

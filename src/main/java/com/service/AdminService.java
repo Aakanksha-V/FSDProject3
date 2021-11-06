@@ -1,7 +1,5 @@
 package com.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,17 +13,11 @@ public class AdminService {
 	AdminRepository adminRepository;
 	
 	public boolean SignIn(Admin admin) {
-		List<Admin> isAdmin = adminRepository.findAll();
-		if(isAdmin.size() < 1)
-			return false;
-		else {
-			Admin user = isAdmin.get(0);
-			if(user.getEmail().equals(admin.getEmail()) &&user.getPass().equals(admin.getPass()))
-				return true;
-			else 
-				return false;
-			
-		}
+		System.out.println("Inside admin sign service");
+		Admin isAdmin = adminRepository.findAdmin(admin.getEmail());
+		if(isAdmin.getPass().equals(admin.getPass()))
+			return true;
+		return false;
 	}
 	
 	public boolean changePassword(Admin admin) {
