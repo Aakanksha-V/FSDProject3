@@ -17,9 +17,10 @@ public class ProductService {
 
 	public boolean addProduct(Product product) {
 		Product p = productRepository.save(product);
-		if(p.getProductName().isBlank())
+		System.out.println(p.toString());
+//		if(p.getProductName().isBlank())
 			return false;
-		return true;
+//		return true;
 	}
 	
 	public Product getProductById(Integer id) {
@@ -41,6 +42,7 @@ public class ProductService {
 			p.setCompany(product.getCompany());
 			p.setProductName(product.getProductName());
 			p.setPrice(product.getPrice());
+			Product savedProduct = productRepository.save(p);
 			return true;
 		}
 		return false;

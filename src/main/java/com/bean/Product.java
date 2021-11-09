@@ -9,6 +9,11 @@ import javax.persistence.Table;
 @Table(name = "product")
 public class Product {
 
+	@Override
+	public String toString() {
+		return "Product [productId=" + productId + ", productName=" + productName + ", catogery=" + catogery
+				+ ", price=" + price + ", company=" + company + "]";
+	}
 	@Id
 	@Column(name = "productid")
 	private int productId;

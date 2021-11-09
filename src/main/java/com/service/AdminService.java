@@ -15,8 +15,13 @@ public class AdminService {
 	public boolean SignIn(Admin admin) {
 		System.out.println("Inside admin sign service");
 		Admin isAdmin = adminRepository.findAdmin(admin.getEmail());
-		if(isAdmin.getPass().equals(admin.getPass()))
+		System.out.println(isAdmin.getEmail() + isAdmin.getPass());
+		if(isAdmin.getPass().equals(admin.getPass())) {
+			System.out.println("HII");
 			return true;
+			
+		}
+			
 		return false;
 	}
 	

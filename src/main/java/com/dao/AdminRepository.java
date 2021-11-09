@@ -7,7 +7,7 @@ import org.springframework.data.repository.query.Param;
 
 import com.bean.Admin;
 
-public interface AdminRepository extends JpaRepository<Admin, Object>{
+public interface AdminRepository extends JpaRepository<Admin, String>{
 
 	@Modifying
 	@Query("update Admin as a set a.pass = :password where a.email = :email")

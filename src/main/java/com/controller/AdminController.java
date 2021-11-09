@@ -2,8 +2,6 @@ package com.controller;
 
 import java.util.List;
 
-import javax.persistence.Id;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -37,8 +35,11 @@ public class AdminController {
 	@PostMapping(value = "signIn", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public String SingIn(@RequestBody Admin admin) {
 		System.out.println("inside admin controller");
-		if(adminService.SignIn(admin))
+		if(adminService.SignIn(admin)) {
+			System.out.println("True");
 			return "Welcome admin";
+		}
+			
 		return "Incorrect user name or password";
 	}
 	// ****** update required *************
@@ -55,24 +56,25 @@ public class AdminController {
 	//add product
 	@PostMapping(value = "addProduct", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public String addProduct(@RequestBody Product product) {
+		System.out.println(product.toString());
 		if(productService.addProduct(product))
 			return "Sucessfully added "+product.getProductName()+".";
 		else 
 			return "Invalid input or product with same id already exists";
 	}
-	@GetMapping(value = "allProducts", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "allProducts", produces = MediaType.APPLICATION_JSON_VALUE)	//working
 	public List<Product> getAllProducts(){
 		List<Product> allProducts = productService.getAllProducts();
 		return allProducts;
 	}
 	
-	@GetMapping(value = "getProduct/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "getProduct/{id}", produces = MediaType.APPLICATION_JSON_VALUE)	//working
 	public Product getProduct(@PathVariable("id") int id) {
 		return productService.getProductById(id);
 	}
 	
 	//delete Product
-	@DeleteMapping(value = "deleteProduct/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+	@DeleteMapping(value = "deleteProduct/{id}")	//working
 	public String deleteProductById(@PathVariable("id") Integer id) {
 		productService.deleteById(id);
 		return "Deleted product sucessfully";
