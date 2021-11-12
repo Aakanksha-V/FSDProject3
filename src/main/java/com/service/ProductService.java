@@ -18,9 +18,9 @@ public class ProductService {
 	public boolean addProduct(Product product) {
 		Product p = productRepository.save(product);
 		System.out.println(p.toString());
-//		if(p.getProductName().isBlank())
+		if(p.getProductName().isBlank())
 			return false;
-//		return true;
+		return true;
 	}
 	
 	public Product getProductById(Integer id) {

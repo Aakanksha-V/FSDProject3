@@ -38,3 +38,22 @@ insert into shoe.product values(1,"QT Racer Sport Shoes", 1, 4619, "Adidas");
 insert into shoe.product values(2,"Lite Racer 2.0 Shoes", 2, 4599, "Adidas");
 insert into shoe.product values(4,"Racer TR21 Shoes", 3, 4699, "Adidas");
 insert into shoe.product values(5,"Ultraboost 21 Shoes", 4, 17999, "Adidas");
+
+
+CREATE TABLE `shoe`.`order` (
+  `id` INT NOT NULL,
+  `userId` INT NULL,
+  `productId` INT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `UserID_idx` (`userId` ASC) VISIBLE,
+  INDEX `ProductID_idx` (`productId` ASC) VISIBLE,
+  CONSTRAINT `UserID`
+    FOREIGN KEY (`userId`)
+    REFERENCES `shoe`.`user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `ProductID`
+    FOREIGN KEY (`productId`)
+    REFERENCES `shoe`.`product` (`productid`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);

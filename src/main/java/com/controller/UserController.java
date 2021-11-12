@@ -44,9 +44,5 @@ public class UserController {
 //			return "Invalid email or password. Please try again!";
 //	}
 	
-	//Get all users for admin
-	@GetMapping(value = "allUsers", produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<User> getAllUsers(){
-		return userService.getAllUsers();
-	}
+	
 }

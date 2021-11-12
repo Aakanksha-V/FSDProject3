@@ -89,12 +89,18 @@ public class AdminController {
 		return "Not able to update the product successfully";
 	}
 	
-	@GetMapping("getUser/{name}")
-	public String getUserByName(@PathVariable("name") String name){
+	//Get all users for admin
+	@GetMapping(value = "allUsers", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<User> getAllUsers(){
+		return userService.getAllUsers();
+	}
+	
+	@GetMapping(value = "getUser/{name}",  produces = MediaType.APPLICATION_JSON_VALUE)
+	public User getUserByName(@PathVariable("name") String name){
 		List<User> searchUser = userService.searchUserByName(name);
 		if(searchUser.size()>0)
-			return "User "+searchUser.get(0).getName()+" found!";
+			return searchUser.get(0);
 		else
-			return "User Not found";
+			return null;
 	}
 }
